@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base target="view_frame">
+	<meta charset="utf-8">
+	<title>study</title>
+	<link rel="icon" type="image/x-icon" href="image/favicon.png"/>
+	<link rel="stylesheet" type="text/css" href="css/main.css"/>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/echarts.min.js"></script>
+</head>
+<body>
+	<nav>
+		<h2>参数精简</h2>
+		<ul>
+			<li>before 参数精简</li>
+			<li><a>after 参数精简</a></li>
+			<li><a href="charts/delta 参数精简.html">delta 参数精简</a></li>
+		</ul>
+		<h2>all</h2>
+		<ul>
+			<li><a href="charts/before-all.html">before-all</a></li>
+			<li><a href="charts/after-all.html">after-all</a></li>
+			<li><a href="charts/delta-all.html">delta-all</a></li>
+		</ul>
+		<h2>normal</h2>
+		<ul>
+			<li><a href="charts/before.html">before</a></li>
+			<li><a href="charts/after.html">after</a></li>
+			<li><a href="charts/delta.html">delta</a></li>
+		</ul>
+		<h2>selected</h2>
+		<ul>
+			<li><a href="charts/selected.html">selected</a></li>
+		</ul>
+		<h2>aperture</h2>
+		<ul>
+			<li><a href="charts/height.html">Height</a></li>
+			<li><a href="charts/Ry-2.html">Ry-2</a></li>
+			<li><a href="charts/Ry-1.html">Ry-1</a></li>
+			<li><a href="charts/Ry-0.25.html">Ry-0.25</a></li>
+		</ul>
+	</nav>
+	<div id="main" style="width: 600px; height: 600px; float: left">1</div>
+<script>
+	$("li").click(function(){
+		$(this).parents("nav").find("li").removeClass("currentLink");
+		$(this).addClass("currentLink");
+		$.getJSON('data/R-0-7-0.25.json',function(){
+			echarts.init(getElementById('main')).setOption({
+				title:{
+					text:'10mm行程内节理剪切磨损分布图',
+					left:'center'
+				},
+				visualMap: {
+					right: 0,
+					bottom: 60,
+					min: 0,
+					max: 2,
+					precision: 0.1,
+					text:['2','0'],
+					inRange: {color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']}, 
+				},
+				tooltip: {
+			        formatter: function (obj) {
+			        	var value=obj.value;
+			            return value[2];
+			        }
+			    },
+				toolbox:{
+					show:true,
+					feature:{
+						dataZoom:{},
+						dataView:{readOnly:false},
+						restore:{},
+						saveAsImage:{}
+
+					}
+				},
+				grid: {
+			        x: '10%',
+			        x2: 80,
+			    },
+				xAxis:{
+					type:'value',
+					name:'X (mm)',
+					nameLocation: 'center',
+					nameGap: 20,
+				},
+				yAxis:{
+					type:'value',
+					name: 'Y (mm)',
+					nameLocation: 'center',
+					nameGap: 20,
+				},
+				series:{
+					name: 'area',
+					type: 'heatmap',
+					data: data,
+				}
+	        });
+		});
+	});
+</script>
+</body>
+</html>

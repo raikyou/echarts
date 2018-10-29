@@ -1,0 +1,45 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+body {
+	background-color: #fdfcf8;
+	font-family: PingFangSC-Regular, Verdana, Arial, '微软雅黑','宋体';
+}
+nav {
+	height: 100vh;
+	width: 150px;
+	margin-left: 20px;
+	padding-top: 20px;
+	border-right: 5px groove;
+	float: left;
+}
+li {
+	list-style: none;
+}
+h2 {
+	font-size: 14px;
+	font-weight: bold;
+	padding: 10px 0 5px 10px;
+}
+a:link, a:visited {
+	display: block;
+	padding: 5px 0 5px 15px;
+	color: #000;  
+	text-decoration: none;
+	font-size: 12px;
+}
+a:hover {
+	background-color: #999 ;
+	color: #fff;
+}
+li.currentLink a:link, li.currentLink a:visited {
+	background-color: #BD2D30;
+	color : #fff;
+}
+iframe {
+	height: 100vh;
+	width: 1100px;
+	float: left;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>after</title>
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="main" style="height: 600px; width: 600px;"></div>
+    <script type="text/javascript">
+    $.getJSON('../data/R-0-7-2.json', function(data) { 
+        var myChart = echarts.init(document.getElementById('main'));
+        var option = {
+            title: {
+                text: '下断面10mm行程内最大高度差',
+                left: 'center'
+            },
+            visualMap: {
+                right: 0,
+                bottom: 60,
+                min: 0,
+                max: 2,
+                precision: 0.1,
+                calculable: true,
+                //inRange: {color: ['rgb(42,32,117)', 'rgb(53,50,131)', 'rgb(58,58,138)', 'rgb(74,92,167)', 'rgb(114,169,226)', 'rgb(142,191,213)', 'rgb(141,187,151)', 'rgb(159,192,86)', 'rgb(191,207,35)', 'rgb(237,232,33)', 'rgb(226,184,26)', 'rgb(197,106,28)', 'rgb(180,47,27)', 'rgb(176,23,26)', 'rgb(140,23,24)']},
+                inRange: {color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']}, 
+                //inRange: {color: ['#f2c31a', '#24b7f2']},
+                //['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+            },
+            tooltip: {
+                formatter: function(obj) {
+                    var value = obj.value;
+                    return value[2];
+                }
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    dataZoom: {},
+                    dataView: { readOnly: false },
+                    restore: {},
+                    saveAsImage: {}
+
+                }
+            },
+            grid: {
+                x: '10%',
+                x2: 80,
+            },
+            xAxis: {
+                type: 'value',
+                name: 'X (mm)',
+                nameLocation: 'center',
+                nameGap: 20,
+            },
+            yAxis: {
+                type: 'value',
+                name: 'Y (mm)',
+                nameLocation: 'center',
+                nameGap: 20,
+            },
+            series: {
+                name: 'area',
+                type: 'scatter',
+                data: data,
+                symbol: 'rect',
+                symbolSize: 10
+            }
+        };
+        myChart.setOption(option);
+    });
+    </script>
+</body>
+
+</html>
