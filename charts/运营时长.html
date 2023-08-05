@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<script src="../js/echarts.min.js"></script>
+</head>
+
+<body>
+	<div id="main" style="height: 600px;width: 1200px;"></div>
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById('main'));
+		var option = {
+			title: {
+				text: '运营时长',
+				left: 'center'
+			},
+			legend: {
+				top: 30
+			},
+
+			tooltip: {
+				trigger: 'axis'
+			},
+			toolbox: {
+				show: true,
+				// orient: 'vertical',
+				// top: 100,
+				// right: 70,
+				feature: {
+					dataZoom: {},
+					dataView: { readOnly: false },
+					magicType: { type: ['line', 'bar'] },
+					restore: {},
+					saveAsImage: {}
+
+				}
+			},
+			dataset: {
+				source: [
+					["-", "安卓", "IOS"],
+					["钉钉", 2.9, 7.5],
+					["企业微信", 2.8, 6.1],
+					["腾讯会议", 2.3, 2.4],
+					["Linknow", 1.6, 0.7],
+					["TIM", 3.5, 5.2],
+					["飞书", 2.3, 3.9],
+					["welink", 2.9, 4],
+					["瞩目", 2.9, 6.8],
+					["小鱼易连", 2.9, 6.4],
+					["思科WebEx", 2.8, 13.4],
+					["如流", 2.8, 9.7],
+					["中移云视讯", 2.9, 4.7],
+					["zoom", 4.8, 9.8],
+					["微软teams", 2.8, 5.6],
+					["全时", 2.9, 5.5],
+					["好视通", 3.1, 6.1],
+					["华为云会议", 2.9, 4.2],
+					["尚阳Umeet", 3.2, 5.9],
+					["美团大象", 2.8, 8.2],
+					["迈聆会议", 2.8, 3.1],
+					["ZEGO-Talkline", 2.5, 3.1],
+					["网易会议", 1.8, 1.7],
+					["飞书会议", 2.2, 2.2],
+					["金山会议", 1.9, 2],
+					["chime", "-", 5.3],
+					["会畅通讯", 0.2, 1.1],
+					["菊风云会议", "-", 2.4]
+				]
+			},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '15%',
+				containLabel: true
+			},
+			xAxis: {
+				type: 'category',
+				boundaryGap: false,
+				axisLabel: {
+					rotate: 90
+				}
+			},
+			yAxis: [{
+				type: "value",
+				axisLine: {
+					onZero: true
+				}
+			}],
+			dataZoom: [
+				{
+					type: 'slider',
+					xAxisIndex: 0,
+					filterMode: 'none'
+				},
+				// {
+				// 	type: 'slider',
+				// 	yAxisIndex: 0,
+				// 	filterMode: 'none'
+				// },
+				{
+					type: 'inside',
+					xAxisIndex: 0,
+					filterMode: 'none'
+				},
+				// {
+				// 	type: 'inside',
+				// 	yAxisIndex: 0,
+				// 	filterMode: 'none'
+				// }
+			],
+			/*datazoom:[
+			{
+				type:'slide',
+				xAxisIndex:[0],
+				start:0,
+				end:35
+			},
+			{
+				type:'slide',
+				yAxisIndext:[0],
+				start:0,
+				end:35
+			}],*/
+			series: [
+				{
+					type: 'line'
+				},
+				{
+					type: 'line'
+				}
+			]
+
+		};
+		myChart.setOption(option);
+	</script>
+
+</body>
+
+</html>

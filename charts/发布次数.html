@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<script src="../js/echarts.min.js"></script>
+</head>
+
+<body>
+	<div id="main" style="height: 600px;width: 1200px;"></div>
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById('main'));
+		var option = {
+			title: {
+				text: '发布次数',
+				left: 'center'
+			},
+			legend: {
+				top: 30
+			},
+
+			tooltip: {
+				trigger: 'axis'
+			},
+			toolbox: {
+				show: true,
+				// orient: 'vertical',
+				// top: 100,
+				// right: 70,
+				feature: {
+					dataZoom: {},
+					dataView: { readOnly: false },
+					magicType: { type: ['line', 'bar'] },
+					restore: {},
+					saveAsImage: {}
+
+				}
+			},
+			dataset: {
+				source: [
+					["-", "安卓历史", "安卓年均", "安卓近一年", "IOS历史", "IOS年均", "IOS近一年"],
+					["钉钉", 105, 37, 41, 207, 28, 29],
+					["企业微信", 48, 17, 15, 126, 21, 18],
+					["腾讯会议", 80, 35, 35, 109, 45, 45],
+					["Linknow", "-", 0, "-", 5, 8, 5],
+					["TIM", 18, 5, 7, 38, 7, 3],
+					["飞书", 87, 37, 34, 149, 38, 38],
+					["welink", 74, 26, 35, 78, 20, 27],
+					["瞩目", 11, 4, 7, 34, 5, 16],
+					["小鱼易连", 31, 11, 5, 73, 11, 6],
+					["思科WebEx", 51, 18, 17, 162, 12, 43],
+					["如流", 66, 23, 20, 149, 15, 23],
+					["中移云视讯", 13, 5, 0, 37, 8, 4],
+					["zoom", 1, 0, 0, 138, 14, 20],
+					["微软teams", 19, 7, 2, 175, 31, 40],
+					["全时", 45, 16, 17, 93, 17, 24],
+					["好视通", 30, 10, 8, 54, 9, 10],
+					["华为云会议", 38, 13, 16, 61, 14, 17],
+					["尚阳Umeet", 7, 2, 1, 14, 2, 1],
+					["美团大象", 19, 7, 6, 67, 8, 12],
+					["迈聆会议", 45, 16, 11, 58, 18, 14],
+					["ZEGO-Talkline", 25, 10, 2, 50, 16, 9],
+					["网易会议", 25, 14, 10, 30, 17, 14],
+					["飞书会议", 11, 5, 2, 13, 6, 2],
+					["金山会议", 31, 16, 11, 40, 20, 21],
+					["chime", "-", "-", "-", 80, 15, 5],
+					["会畅通讯", 3, 12, 3, 11, 10, 8],
+					["菊风云会议", "-", "-", "-", 23, 10, 8]
+				]
+			},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '15%',
+				containLabel: true
+			},
+			xAxis: {
+				type: 'category',
+				boundaryGap: false,
+				axisLabel: {
+					rotate: 90
+				}
+			},
+			yAxis: [{
+				type: "value",
+				axisLine: {
+					onZero: true
+				}
+			}],
+			dataZoom: [
+				{
+					type: 'slider',
+					xAxisIndex: 0,
+					filterMode: 'none'
+				},
+				// {
+				// 	type: 'slider',
+				// 	yAxisIndex: 0,
+				// 	filterMode: 'none'
+				// },
+				{
+					type: 'inside',
+					xAxisIndex: 0,
+					filterMode: 'none'
+				},
+				// {
+				// 	type: 'inside',
+				// 	yAxisIndex: 0,
+				// 	filterMode: 'none'
+				// }
+			],
+			/*datazoom:[
+			{
+				type:'slide',
+				xAxisIndex:[0],
+				start:0,
+				end:35
+			},
+			{
+				type:'slide',
+				yAxisIndext:[0],
+				start:0,
+				end:35
+			}],*/
+			series: [
+				{
+					type: 'line'
+				},
+				{
+					type: 'line'
+				},
+				{
+					type: 'line'
+				},
+				{
+					type: 'line'
+				},
+				{
+					type: 'line'
+				},
+				{
+					type: 'line'
+				}
+			]
+
+		};
+		myChart.setOption(option);
+	</script>
+
+</body>
+
+</html>

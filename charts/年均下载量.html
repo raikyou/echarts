@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<!-- <title>after</title> -->
+	<script src="../js/echarts.min.js"></script>
+</head>
+
+<body>
+	<div id="main" style="height: 600px;width: 1200px;"></div>
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById('main'));
+		var option = {
+			title: {
+				text: '年均下载量（万次）',
+				left: 'center'
+			},
+			legend: {
+				top: 30
+			},
+
+			tooltip: {
+				trigger: 'axis'
+			},
+			toolbox: {
+				show: true,
+				// orient: 'vertical',
+				// top: 100,
+				// right: 70,
+				feature: {
+					dataZoom: {},
+					dataView: { readOnly: false },
+					magicType: { type: ['line', 'bar'] },
+					restore: {},
+					saveAsImage: {}
+
+				}
+			},
+			dataset: {
+				source: [
+					["-", "华为", "小米", "vivo", "OPPO", "应用宝", "魅族", "百度", "360", "IOS"],
+					["钉钉", 279159, 48248, 15155, 99997, 25457, 7235, 11166, 832, 1427],
+					["企业微信", 66940, 12722, 3107, 17968, 8559, 1356, 2777, 190, 1213],
+					["腾讯会议", 86801, 14652, 6241, 16926, 932, 918, 106, 106, 2843],
+					["Linknow", 126736, 10, 24, 11, 64, 0, 0, 0, 0],
+					["TIM", 2074, 1368, 829, 687, 656, 255, 498, 0, 115],
+					["飞书", 3409, 1320, 681, 417, 35, 43, 172, 0, 245],
+					["welink", 2402, 0, 141, 231, 8, 19, 43, 3, 64],
+					["瞩目", 654, 154, 345, 118, 44, 6, 434, 4, 55],
+					["小鱼易连", 622, 202, 220, 122, 32, 6, 163, 3, 54],
+					["思科WebEx", 941, 143, 49, 68, 34, 7, 156, 10, 13],
+					["如流", 162, 132, 100, 61, 19, 12, 931, 0, 10],
+					["中移云视讯", 412, 126, 285, 221, 14, 8, 159, 0, 38],
+					["zoom", 0, 0, 99, 336, 0, 17, 0, 0, 133],
+					["微软teams", 256, 172, 96, 27, 7, 6, 322, 0, 75],
+					["全时", 395, 133, 52, 70, 7, 5, 69, 1, 18],
+					["好视通", 262, 90, 79, 70, 12, 4, 111, 0, 11],
+					["华为云会议", 239, 27, 28, 12, 1, 1, 15, 0, 6],
+					["尚阳Umeet", 47, 21, 79, 10, 0, 1, 56, 0, 23],
+					["美团大象", 76, 39, 54, 21, 3, 5, 46, 0, 5],
+					["迈聆会议", 53, 15, 10, 6, 0, 0, 15, 0, 13],
+					["ZEGO-Talkline", 50, 20, 13, 16, 3, 0, 15, 0, 0],
+					["网易会议", 15, 7, 98, 7, 1, 0, 0, 0, 4],
+					["飞书会议", 11, 4, 25, 3, 1, 0, 10, 0, 10],
+					["金山会议", 18, 7, 27, 4, 0, 0, 0, 0, 1],
+					["chime", 0, 0, 0, 0, 0, 0, 0, 0, 1],
+					["会畅通讯", 4, 1, 0, 0, 0, 0, 0, 0, 0],
+					["菊风云会议", 0, 0, 0, 0, 0, 0, 0, 0, 0]
+				]
+			},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '15%',
+				containLabel: true
+			},
+			xAxis: {
+				type: 'category',
+				boundaryGap: false,
+				axisLabel: {
+					rotate: 90
+				}
+			},
+			yAxis: [{
+				type: "value",
+				axisLine: {
+					onZero: true
+				}
+			}],
+			dataZoom: [
+				{
+					type: 'slider',
+					xAxisIndex: 0,
+					filterMode: 'none'
+				},
+				{
+					type: 'slider',
+					yAxisIndex: 0,
+					filterMode: 'none'
+				},
+				// {
+				// 	type: 'inside',
+				// 	xAxisIndex: 0,
+				// 	filterMode: 'none'
+				// },
+				{
+					type: 'inside',
+					yAxisIndex: 0,
+					filterMode: 'none'
+				}
+			],
+			/*datazoom:[
+			{
+				type:'slide',
+				xAxisIndex:[0],
+				start:0,
+				end:35
+			},
+			{
+				type:'slide',
+				yAxisIndext:[0],
+				start:0,
+				end:35
+			}],*/
+			series: [
+				{
+					type: 'line'
+				},
+				{
+					type: 'line'
+				},
+				{
+					type: 'line'
+				},
+				{
+					type: 'line'
+				},
+				{
+					type: 'line'
+				},
+				{
+					type: 'line'
+				},
+				{
+					type: 'line'
+				},
+				{
+					type: 'line'
+				},
+				{
+					type: 'line'
+				}
+			]
+
+		};
+		myChart.setOption(option);
+	</script>
+
+</body>
+
+</html>
