@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>China Map</title>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/china.js"></script>
+    <!-- <script src="js/paperparse.min.js"></script> -->
+</head>
+
+<body style="margin: 0px;">
+    <div id="main" , style="width: 100%; height: 100%; position: absolute;"></div>
+    <script>
+        var chart = echarts.init(document.getElementById('main'));
+        // 用json方法传入地图
+        // $.get('js/china.json', function (geoJson) {
+        //     echarts.registerMap('china', geoJson);
+        //     var mapData = geoJson.features.map(function (item) {
+        //         return {
+        //             name: item.properties.name,
+        //             value: item.properties.childNum,
+        //             cp: item.properties.cp
+        //         }
+        //     });
+        // 用js方法传入
+        var geoCoordMap = {
+            '新疆': [87.50, 43.98],
+            '西藏': [90.95, 29.88],
+            '青海': [101.70, 36.73],
+            '甘肃': [103.76, 36.19],
+            '内蒙古': [111.71, 40.98],
+            '宁夏': [106.19, 38.60],
+            '四川': [103.98, 30.71],
+            '云南': [102.73, 25.02],
+            '陕西': [108.95, 34.27],
+            '山西': [108.84, 34.51],
+            // '重庆': [106.41, 29.68],
+            '重庆': [107.83, 30.00],
+            '贵州': [106.56, 26.75],
+            '广西': [108.32, 22.99],
+            '海南': [110.12, 20.14],
+            '广东': [113.18, 23.20],
+            '澳门': [113.55, 22.10],
+            '香港': [114.06, 22.58],
+            '台湾': [121.49, 25.12],
+            '福建': [119.10, 26.19],
+            '江西': [115.72, 28.21],
+            '湖南': [112.77, 28.36],
+            '湖北': [114.17, 30.74],
+            '安徽': [117.12, 31.94],
+            '浙江': [119.99, 30.36],
+            // '江苏': [118.66, 32.19],
+            '江苏': [120.15, 33.35],
+            '河南': [113.44, 34.84],
+            '山东': [116.97, 36.76],
+            '上海': [121.48, 31.25],
+            '河北': [114.39, 38.17],
+            '天津': [117.81, 39.14],
+            '北京': [116.38, 39.97],
+            '辽宁': [123.41, 41.87],
+            '吉林': [125.25, 43.85],
+            '黑龙江': [126.50, 45.86]
+        };
+        var company = {
+            '瀚云': ['江苏', '上海', '广东', '重庆', '贵州', '湖北'],
+            '海尔': ['山东', '上海', '江苏', '天津', '陕西'],
+            '航天': ['四川', '贵州', '甘肃', '辽宁', '北京', '江西', '内蒙古'],
+            '徐工': ['江苏', '上海', '北京', '广东'],
+            '树根': ['湖南', '陕西', '江苏', '上海', '北京'],
+            '用友': ['湖南', '湖北', '贵州', '重庆', '江西'],
+            '阿里': ['浙江', '江苏', '广东', '重庆'],
+        };
+        var convertData = function (loc) {
+            var res = [];
+            for (var i = 0; i < loc.length; i++) {
+                // 用json方法传入
+                //     mapData.forEach((v) => {
+                //         res.push({
+                //             name: loc[i].name,
+                //             value: v.cp.concat(loc[i].value)
+                //         })
+                //     })
+                // 用js方法传入
+                var geoCoord = geoCoordMap[loc[i]];
+                geoCoord = geoCoord.map((v, k) => { return v + Math.random() - 0.5 });
+                res.push(geoCoord.concat(1));
+            }
+            return res;
+        };
+        var series = [];
+        for (var key in company) {
+            series.push({
+                name: key,
+                type: 'scatter',
+                coordinateSystem: 'geo',
+                data: convertData(company[key]),
+                symbolSize: function (val) {
+                    return val[2] * 10;
+                },
+                itemStyle: {
+                    emphasis: {
+                        borderColor: '#fff',
+                        borderWidth: 1
+                    }
+                }
+            })
+        }
+        var option = {
+            backgroundColor: "#404a59",
+            color: ['#c23531', '#61a0a8', '#d48265', '#91c7ae', '#ca8622', '#c4ccd3', '#749f83', '#bda29a', '#6e7074', '#546570',],
+            title: {
+                text: "国家重点平台区域发展情况",
+                left: "center",
+                top: '50px',
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 20
+                }
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            legend: {
+                orient: 'vertical',
+                top: '300px',
+                right: '300px',
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 16
+                }
+            },
+            // visualMap: {
+            //     type: 'continuous',
+            //     min: 0,
+            //     max: 10,
+            //     calculable: true,
+            //     left:'350px',
+            //     bottom:'50px',
+            //     inRange: {
+            //         color: ['#50a3ba', '#eac736', '#d94e5d']
+            //     },
+            //     textStyle: {
+            //         color: '#fff'
+            //     }
+            // },
+            geo: {
+                map: "china",
+                itemStyle: {
+                    normal: {
+                        // borderWidth: 5,
+                        borderColor: "#111",
+                        areaColor: "#323c48",
+                    },
+                    emphasis: {
+                        // borderWidth: 5,
+                        // borderColor: "#4b0082",
+                        areaColor: "#2a333d",
+                    }
+                },
+                label: {
+                    normal: {
+                        // show: true,
+                        textStyle: {
+                            color: "#eee"
+                        }
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            color: "#fff"
+                        }
+                    }
+                },
+                zoom: 1.2,
+            },
+            series: series
+        };
+        chart.setOption(option);
+        // })
+    </script>
+</body>
+
+</html>
